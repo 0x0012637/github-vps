@@ -26,10 +26,12 @@
 
 ![neofetch](assets/neofetch.png)
 
-## 📜 Description 
+## 📜 Description
+
 GitHub Codespaces allows developers and hackers to create and utilize their coding environments directly from GitHub in the cloud. As a CTF player or pentester, you can also leverage GitHub Codespaces similarly to a VPS (Virtual Private Server). This makes it easy to work on projects from anywhere with the flexibility of a portable development setup using Docker.
 
 ## 📚 Table of Contents
+
 - 📜 [Description](#-description)
 - 🔥 [What's Nice](#whats-nice)
 - 🐳 [Installation](#-installation)
@@ -37,31 +39,38 @@ GitHub Codespaces allows developers and hackers to create and utilize their codi
 - 🚫 [Temporarily Disabled](#-temporarily-disabled)
 - 👨🏾‍⚖️ [License](#-license)
 
- 
 ## 🔥 What's Nice
+
 - Offers more power with `2-vCPUs`, `8GB-RAM`, and a temporary `32GB-SSD` storage drive.
 - Higher performance with `4-vCPUs`, `16GB-RAM`, and a temporary `32GB-SSD` storage drive.
-![machine_type](assets/machine_type.png)
+  ![machine_type](assets/machine_type.png)
 
 ### 🐳 Installation
 
-> [!NOTE] 
-> Github codespace terminal
----
-![starting](assets/starting.png)
-```bash
-# pulling images 
-$ docker pull docker.io/kalilinux/kali-rolling
+> [!NOTE]
+>
+>> Github codespace terminal
+>>
+>> ![starting](assets/starting.png)
+>
+> ```bash
+> # pulling images 
+> $ docker pull docker.io/kalilinux/kali-rolling
+>
+> ```
 
 # Option 1: Priviliged mode (recommended for ctf players)
+
 $ docker run --privileged -it kalilinux/kali-rolling /bin/bash
 
 # Option 2: Interactive mode
+
 $ docker run --tty --interactive kalilinux/kali-rolling
- 
+
 $ apt update && apt install -y kali-linux-default
 
 $ apt update && apt install -y install kali-linux-headless
+
 ```
 ### Installation without errors
 > [!TIP]
@@ -93,8 +102,10 @@ $ docker stop <container id>
 $ docker rm <container id>
 ```
 
-### Adding non-root user 
+### Adding non-root user
+
 ![non-root](assets/add_non-root_user.png)
+
 ```bash
 $ sudo apt update && sudo apt upgrade -y
 
@@ -117,7 +128,8 @@ $ su - l0n3m4n
 $ whoami
 ```
 
-### Diskspace Monitoring 
+### Diskspace Monitoring
+
 ```bash
 # view ram details
 $ free
@@ -131,19 +143,26 @@ $ df -h
 ```
 
 ### Docker Privileged
+
 > [!IMPORTANT]
 > The way to use openvpn or enable `tun0` you need to add `--privileged` option instead using `--tty` by default, Docker containers do not have access to TUN/TAP devices on the host system due to security and isolation concerns.
-```bash
-# options 1:
-$ docker run --privileged -it kalilinux/kali-rolling /bin/bash
+>
+> ```bash
+> # options 1:
+> $ docker run --privileged -it kalilinux/kali-rolling /bin/bash
+>
+> ```
 
 # Option 2: Use --device Flag (More Secure)
+
 # A more secure approach is to use the --device flag to explicitly map the TUN/TAP device from the host into the container. This approach is more controlled and limits access to only the necessary device.
 
 $ docker run --device=/dev/net/tun:/dev/net/tun -it kalilinux/kali-rolling /bin/bash
 
 # Verify TUN/TAP Functionality Inside the Container
+
 $ ls -l /dev/net/tun
+
 ```
 
 ### New Terminal Session
@@ -153,29 +172,36 @@ $ ls -l /dev/net/tun
 $ docker exec -it <container_id> /bin/bash
 ```
 
-## 🚫 Temporarily Disabled 
+## 🚫 Temporarily Disabled
+
 If you've used 100% of the included services for GitHub Codespaces storage, a few things might happen depending on your account settings and actions.
 
 1. **Inability to Use Codespaces**: You won't be able to create or use GitHub Codespaces until either your `free allotment resets next month` or you take action to manage your usage.
 2. **Options to Regain Access**:
-    - Set Up a Spending Limit: You can set up a `spending limit` on your GitHub account to prevent unexpected charges and manage your usage effectively.
-    - Delete Unused Resources: Consider `deleting Codespaces` or `prebuilds` that are no longer needed to free up space and potentially reduce future charges.
+   - Set Up a Spending Limit: You can set up a `spending limit` on your GitHub account to prevent unexpected charges and manage your usage effectively.
+   - Delete Unused Resources: Consider `deleting Codespaces` or `prebuilds` that are no longer needed to free up space and potentially reduce future charges.
 3. **Access to In-Progress Work**: It's important to `export` any unpushed work to a branch if you want to retain access to your in-progress projects. This ensures you have a backup and can continue working on them when you regain access to Codespaces.
 4. **Review Usage and Charges**: GitHub provides a `usage report` where you can see detailed information about your Codespaces and prebuild usage. This can help you understand your usage patterns and manage future usage effectively.
+
 ---
+
 ![codespace](assets/codespace.png)
 ![billing](assets/billing.png)
 
 ## 🔄 Changelog
+
 ### v1.1.0 - [2024-06-29]
+
 - Adjustment:
-    - Adding `privileged` user mode to enable TUN error when starting the OpenVPN file.
-      
+  - Adding `privileged` user mode to enable TUN error when starting the OpenVPN file.
+
 ## 📝 Todo
+
 - [ ] **Adding remotehost for graphical user inferface (GUI), this includes xrdp, ssh, noVNC and etc.**
 - [ ] **Adding Automated builds Dockerfile to ensure consistency and reliability.**
 - [ ] **Adding ngrok to exposed your cloud servers behind NATs and firewalls to the public internet over secure tunnels.**
 - [ ] **Adding Openvpn default configuration to ensure privacy and security**
 
 ## 👨🏾‍⚖️ License
+
 This project is under terms of the [MIT License](LICENSE). bugs and error, create [issue](https://github.com/l0n3m4n/github-vps/issues/new)
